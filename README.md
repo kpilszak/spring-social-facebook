@@ -17,7 +17,7 @@ Project is created with:
 * Maven  
 * AngularJS v1.2.32  
 * jQuery  
-* Bootstrap
+* Bootstrap  
 IDE: Intellij IDEA 2020
 
 ## Sources
