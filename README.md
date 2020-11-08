@@ -7,7 +7,7 @@
 
 ## General info
 This project is a Spring application.  
-The main purpose is to develop a facebook app with the help of Spring-Social.         
+The main purpose is to develop a facebook app with the help of Spring Social.         
 
 ## Technologies
 Project is created with:
