@@ -11,7 +11,4 @@ public class HomeController {
 
     private final static Logger LOG = LoggerFactory.getLogger(HomeController.class);
 
-    private final Facebook facebook;
-
-
 }
