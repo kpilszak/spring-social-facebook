@@ -5,6 +5,9 @@ import org.springframework.core.env.Environment;
 import org.springframework.social.config.annotation.ConnectionFactoryConfigurer;
 import org.springframework.social.config.annotation.EnableSocial;
 import org.springframework.social.config.annotation.SocialConfigurerAdapter;
+import org.springframework.social.connect.ConnectionFactoryLocator;
+import org.springframework.social.connect.UsersConnectionRepository;
+import org.springframework.social.connect.mem.InMemoryUsersConnectionRepository;
 import org.springframework.social.facebook.connect.FacebookConnectionFactory;
 
 @Configuration
@@ -22,5 +25,14 @@ public class SocialConfig extends SocialConfigurerAdapter {
                         env.getProperty("facebook.app.secret")
                 )
         );
+    }
+
+    @Override
+    public UsersConnectionRepository getUserConnectionRepository(
+            ConnectionFactoryLocator connectionFactoryLocator
+    ) {
+        InMemoryUsersConnectionRepository repository =
+                new InMemoryUsersConnectionRepository(connectionFactoryLocator);
+        return repository;
     }
 }
