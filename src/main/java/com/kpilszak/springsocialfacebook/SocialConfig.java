@@ -2,6 +2,7 @@ package com.kpilszak.springsocialfacebook;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
+import org.springframework.social.UserIdSource;
 import org.springframework.social.config.annotation.ConnectionFactoryConfigurer;
 import org.springframework.social.config.annotation.EnableSocial;
 import org.springframework.social.config.annotation.SocialConfigurerAdapter;
@@ -34,5 +35,10 @@ public class SocialConfig extends SocialConfigurerAdapter {
         InMemoryUsersConnectionRepository repository =
                 new InMemoryUsersConnectionRepository(connectionFactoryLocator);
         return repository;
+    }
+    
+    @Override
+    public UserIdSource getUserIdSource() {
+        return new SecurityContextUserIdSource();
     }
 }
