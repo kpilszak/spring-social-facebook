@@ -12,6 +12,7 @@ import org.springframework.social.connect.ConnectionRepository;
 import org.springframework.social.connect.UsersConnectionRepository;
 import org.springframework.social.connect.mem.InMemoryUsersConnectionRepository;
 import org.springframework.social.connect.web.ConnectController;
+import org.springframework.social.connect.web.ProviderSignInController;
 import org.springframework.social.facebook.connect.FacebookConnectionFactory;
 
 @Configuration
@@ -52,6 +53,19 @@ public class SocialConfig extends SocialConfigurerAdapter {
     ) {
         ConnectController controller =
                 new ConnectController(factoryLocator, repository);
+        return controller;
+    }
+    
+    @Bean
+    public ProviderSignInController signInController(
+            ConnectionFactoryLocator factoryLocator,
+            UsersConnectionRepository repository
+    ) {
+        ProviderSignInController controller = new ProviderSignInController(
+                factoryLocator,
+                repository,
+                new UserCookieSignInAdapter()
+        );
         return controller;
     }
 }
