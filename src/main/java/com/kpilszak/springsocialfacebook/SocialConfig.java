@@ -40,7 +40,7 @@ public class SocialConfig extends SocialConfigurerAdapter {
                 new InMemoryUsersConnectionRepository(connectionFactoryLocator);
         return repository;
     }
-    
+
     @Override
     public UserIdSource getUserIdSource() {
         return new SecurityContextUserIdSource();
@@ -55,7 +55,7 @@ public class SocialConfig extends SocialConfigurerAdapter {
                 new ConnectController(factoryLocator, repository);
         return controller;
     }
-    
+
     @Bean
     public ProviderSignInController signInController(
             ConnectionFactoryLocator factoryLocator,
@@ -67,5 +67,21 @@ public class SocialConfig extends SocialConfigurerAdapter {
                 new UserCookieSignInAdapter()
         );
         return controller;
+    }
+
+    @Bean
+    public CanvasSignInController canvasSignInController(
+            ConnectionFactoryLocator factoryLocator,
+            UsersConnectionRepository repository,
+            Environment env
+    ) {
+        return new CanvasSignInController(
+                factoryLocator,
+                repository,
+                new UserCookieSignInAdapter(),
+                env.getProperty("facebook.app.id"),
+                env.getProperty("facebook.app.secret"),
+                env.getProperty("facebook.app.canvas")
+        );
     }
 }
