@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.core.env.Environment;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.social.UserIdSource;
 import org.springframework.social.config.annotation.ConnectionFactoryConfigurer;
 import org.springframework.social.config.annotation.EnableSocial;
@@ -94,5 +95,13 @@ public class SocialConfig extends SocialConfigurerAdapter {
     public Facebook facebook(ConnectionRepository repository) {
         Connection<Facebook> connection = repository.findPrimaryConnection(Facebook.class);
         return connection != null ? connection.getApi() : null;
+    }
+
+    @Bean
+    public HttpComponentsClientHttpRequestFactory requestFactory(Environment env) {
+        HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory();
+        factory.setConnectTimeout(Integer.parseInt(env.getProperty("httpclient.timeout.connection")));
+        factory.setReadTimeout(Integer.parseInt(env.getProperty("httpclient.timeout.read")));
+        return factory;
     }
 }
