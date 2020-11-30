@@ -11,4 +11,8 @@ public class UserCookieInterceptor extends HandlerInterceptorAdapter {
             LoggerFactory.getLogger(UserCookieInterceptor.class);
     
     private final UsersConnectionRepository repository;
+
+    public UserCookieInterceptor(UsersConnectionRepository repository) {
+        this.repository = repository;
+    }
 }
