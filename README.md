@@ -12,7 +12,8 @@ The main purpose is to develop a facebook app with the help of Spring Social.
 ## Technologies
 Project is created with:
 
-IDE: Intellij IDEA 2020
+IDE: Intellij IDEA 2020  
+Java  
 
 ## Sources
 This project was created with help from course on <a href="https://juplo.de">https://juplo.de</a>.
